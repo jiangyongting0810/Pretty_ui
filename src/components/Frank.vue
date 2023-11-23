@@ -1,3 +1,0 @@
-<template>
-  frank1111
-</template>
