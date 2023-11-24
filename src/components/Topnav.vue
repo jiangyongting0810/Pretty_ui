@@ -3,10 +3,11 @@
     <div class="logo" @click="toggleMenu">
       LOGO
     </div>
-    <div class="menu">
+    <ul class="menu">
       <li>菜单1</li>
       <li>菜单2</li>
-    </div>
+    </ul>
+    <span class="toggleAside"></span>
   </div>
 </template>
 <script lang="ts">
@@ -31,6 +32,8 @@ import { inject, Ref } from 'vue'
   padding: 16px;
   position: relative;
   z-index: 10;
+  justify-content: center;
+  align-items: center;
   > .logo {
     max-width: 6em;
     margin-right: auto;
@@ -41,6 +44,14 @@ import { inject, Ref } from 'vue'
     flex-wrap: nowrap;
     > li {
       margin: 0 1em;
+    }
+  }
+  @media (max-width:500px) {
+    > .menu{
+      display: none;
+    } 
+    > .logo{
+      margin: 0 auto;
     }
   }
 }
