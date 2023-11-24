@@ -1,13 +1,13 @@
 <template>
   <div class="topnav">
-    <div class="logo" @click="toggleMenu">
+    <div class="logo">
       LOGO
     </div>
     <ul class="menu">
       <li>菜单1</li>
       <li>菜单2</li>
     </ul>
-    <span class="toggleAside"></span>
+    <span class="toggleAside" @click="toggleMenu"></span>
   </div>
 </template>
 <script lang="ts">
@@ -47,7 +47,7 @@ import { inject, Ref } from 'vue'
     }
   }
   > .toggleAside {
-    display: inline-block;
+    display: none;
     width: 24px;
     height: 24px;
     background: red;
@@ -62,6 +62,9 @@ import { inject, Ref } from 'vue'
     } 
     > .logo{
       margin: 0 auto;
+    }
+    > .toggleAside{
+      display: inline-block;
     }
   }
 }
