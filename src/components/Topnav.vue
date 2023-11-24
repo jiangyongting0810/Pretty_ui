@@ -1,6 +1,6 @@
 <template>
   <div class="topnav">
-    <div class="logo">
+    <div class="logo" @click="toggleMenu">
       LOGO
     </div>
     <div class="menu">
@@ -10,8 +10,18 @@
   </div>
 </template>
 <script lang="ts">
+import { inject, Ref } from 'vue'
   export default {
-    
+    setup(){
+      const menuVisible = inject<Ref<boolean>>('menuVisible')
+      const toggleMenu = () => {
+        if(!menuVisible){return}
+        menuVisible.value = !menuVisible.value
+      }
+      return {
+        toggleMenu
+      }
+    }
   }
 </script>
 <style lang="scss" scoped>
