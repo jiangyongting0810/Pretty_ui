@@ -3,7 +3,11 @@
     Button 示例
   </div>
   <div>
-    <Button>
+    <Button 
+      @click="onClick"
+      @focus="onClick"
+      @mouseover="onClick"
+    >
       你好
     </Button>
   </div>
@@ -16,7 +20,12 @@ export default({
     Button
   },
   setup() {
-    
+    const onClick = () => {
+      console.log(1);
+    }
+    return {
+      onClick
+    }
   },
 })
 </script>
