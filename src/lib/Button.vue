@@ -1,15 +1,20 @@
 <template>
-  <div :size="size">
-    <button v-bind="rest">
-      <slot/>
-    </button>
-  </div>
+  <button 
+    class="pretty-button"
+    :class="{[`theme-${theme}`] : theme}"
+  >
+    <slot/>
+  </button>
 </template>
 
 <script>
 export default{
   inheritAttrs:false,
   props:{
+    theme:{
+      type:String,
+      default:'button'
+    }
   },
   setup(props,context){
     const {size,...rest} = context.attrs
