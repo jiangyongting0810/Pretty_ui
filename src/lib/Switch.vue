@@ -16,7 +16,7 @@ export default{
     const toggle = () =>{
       context.emit('update:value',!props.value)
     }
-    return {checked ,toggle}
+    return {toggle}
   }
 }
 </script>
