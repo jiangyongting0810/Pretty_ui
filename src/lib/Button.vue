@@ -1,26 +1,36 @@
 <template>
   <button 
     class="pretty-button"
-    :class="{[`pretty-theme-${theme}`] : theme}"
+    :class="classes"
   >
     <slot/>
   </button>
 </template>
 
 <script>
+import { computed } from 'vue';
+
 export default{
   inheritAttrs:false,
   props:{
     theme:{
       type:String,
       default:'button'
-    }
+    },
+    size:{
+      type:String,
+      default:'normal'
+    },
   },
   setup(props,context){
-    const {size,...rest} = context.attrs
-    return {
-      size,rest
-    }
+    const { theme, size } = props;
+    const classes = computed(() => {
+      return {
+        [`pretty-theme-${theme}`]: theme,
+        [`pretty-size-${size}`]: size,
+      };
+    });
+    return { classes };
   }
 }
 </script>
@@ -73,6 +83,18 @@ $radius: 4px;
     color: inherit;
     &:hover,&:focus{
       background: darken(white, 5%);;
+    }
+  }
+  &.pretty-theme-button{
+    &.pretty-size-big{
+      font-size: 24px;
+      height: 48px;
+      padding: 0 16px
+    }
+    &.pretty-size-small{
+      font-size: 12px;
+      height: 20px;
+      padding: 0 4px;
     }
   }
 }
