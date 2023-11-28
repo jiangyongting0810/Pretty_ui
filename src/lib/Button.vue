@@ -1,9 +1,5 @@
 <template>
-  <button 
-    class="pretty-button"
-    :class="classes"
-    :disabled="disabled"
-  >
+  <button class="pretty-button" :class="classes" :disabled="disabled">
     <span v-if="loading" class="gulu-loadingIndicator"></span>
     <slot/>
   </button>
@@ -13,7 +9,6 @@
 import { computed } from 'vue';
 
 export default{
-  inheritAttrs:false,
   props:{
     theme:{
       type:String,
