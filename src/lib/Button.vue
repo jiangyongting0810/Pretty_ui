@@ -2,6 +2,7 @@
   <button 
     class="pretty-button"
     :class="classes"
+    :disabled="disabled"
   >
     <slot/>
   </button>
@@ -25,6 +26,10 @@ export default{
       type: String,
       default: "normal",
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props,context){
     const { theme, size, level } = props;
@@ -47,6 +52,7 @@ $color: #333;
 $blue: #40a9ff;
 $radius: 4px;
 $red: red;
+$grey: grey;
 .pretty-button {
   box-sizing: border-box;
   height: $h;
@@ -146,6 +152,21 @@ $red: red;
       &:focus {
         color: darken($red, 10%);
       }
+    }
+  }
+  &.pretty-theme-button {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
+      &:hover {
+        border-color: $grey;
+      }
+    }
+  }
+  &.pretty-theme-link, &.pretty-theme-text {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
     }
   }
 }
