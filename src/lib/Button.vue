@@ -85,17 +85,15 @@ $radius: 4px;
       background: darken(white, 5%);;
     }
   }
-  &.pretty-theme-button{
-    &.pretty-size-big{
-      font-size: 24px;
-      height: 48px;
-      padding: 0 16px
-    }
-    &.pretty-size-small{
-      font-size: 12px;
-      height: 20px;
-      padding: 0 4px;
-    }
+  &.pretty-size-big {
+    font-size: 24px;
+    height: 48px;
+    padding: 0 16px;
+  }
+  &.pretty-size-small {
+    font-size: 12px;
+    height: 20px;
+    padding: 0 4px;
   }
 }
 </style>
