@@ -1,16 +1,19 @@
 <template>
   <template v-if="visible">
-    <div class="pretty-dialog-overlay"></div>
+    <div class="pretty-dialog-overlay" @click="onClickOverlay"></div>
     <div class="pretty-dialog-wrapper">
       <div class="pretty-dialog">
-        <header>标题 <span class="pretty-dialog-close"></span></header>
+        <header>
+          标题
+          <span @click="close" class="pretty-dialog-close"></span>
+        </header>
         <main>
           <p>第一行字</p>
           <p>第二行字</p>
         </main>
         <footer>
-          <Button level="main">OK</Button>
-          <Button>Cancel</Button>
+          <Button level="main" @click="ok">OK</Button>
+          <Button @click="cancel">Cancel</Button>
         </footer>
       </div>
     </div>
@@ -24,10 +27,41 @@ export default {
     visible:{
       type:Boolean,
       default:false
+    },
+    closeOnclickOverlay:{
+      type:Boolean,
+      default:false,
+    },
+    ok:{
+      type:Function,
+    },
+    cancel:{
+      type:Function,
     }
   },
   components: {
     Button,
+  },
+  setup(props,context){
+    //点击空白区关闭窗口
+    const onClickOverlay = () =>{
+      if(props.closeOnclickOverlay){
+        close()
+      }
+    }
+    const close = () => {
+      context.emit('update:visible',false)
+    }
+    const ok = () =>{
+      if(props.ok?.() !== false){
+        close()
+      }
+    }
+    const cancel = () =>{
+      context.emit('cancel')
+      close()
+    }
+    return{onClickOverlay,close,ok,cancel}
   },
 };
 </script>
