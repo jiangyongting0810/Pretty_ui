@@ -1,21 +1,23 @@
 <template>
   <template v-if="visible">
-    <div class="pretty-dialog-overlay" @click="onClickOverlay"></div>
-    <div class="pretty-dialog-wrapper">
-      <div class="pretty-dialog">
-        <header>
-          <slot name ='title'/>
-          <span @click="close" class="pretty-dialog-close"></span>
-        </header>
-        <main>
-          <slot name="content"/>
-        </main>
-        <footer>
-          <Button level="main" @click="ok">OK</Button>
-          <Button @click="cancel">Cancel</Button>
-        </footer>
+    <Teleport to="body">
+      <div class="pretty-dialog-overlay" @click="onClickOverlay"></div>
+      <div class="pretty-dialog-wrapper">
+        <div class="pretty-dialog">
+          <header>
+            <slot name ='title'/>
+            <span @click="close" class="pretty-dialog-close"></span>
+          </header>
+          <main>
+            <slot name="content"/>
+          </main>
+          <footer>
+            <Button level="main" @click="ok">OK</Button>
+            <Button @click="cancel">Cancel</Button>
+          </footer>
+        </div>
       </div>
-    </div>
+    </Teleport>
   </template>
 </template>
 
@@ -27,9 +29,9 @@ export default {
       type:Boolean,
       default:false
     },
-    closeOnclickOverlay:{
-      type:Boolean,
-      default:false,
+    closeOnClickOverlay: {
+      type: Boolean,
+      default: true
     },
     ok:{
       type:Function,
@@ -44,7 +46,7 @@ export default {
   setup(props,context){
     //点击空白区关闭窗口
     const onClickOverlay = () =>{
-      if(props.closeOnclickOverlay){
+      if(props.closeOnClickOverlay){
         close()
       }
     }
