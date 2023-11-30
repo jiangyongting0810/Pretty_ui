@@ -1,9 +1,8 @@
 <template>
   <div>Dialog 示例</div>
   <h1>示例1</h1>
-  <div style="position: relative; z-index: 1;">
   <Button @click="toggle">toggle</Button>
-  <Dialog v-model:visible="x" :closeOnClickOverlay="true" :ok="f1" :cancel="f2">
+  <Dialog v-model:visible="x" :closeOnClickOverlay="false" :ok="f1" :cancel="f2">
     <template v-slot:content>
       <strong>hi</strong>
       <div>hi2</div>
@@ -12,14 +11,15 @@
       <strong>加粗的标题</strong>
     </template>
   </Dialog>
-</div>
-<div style="position: relative; z-index: 2; width: 300px; height: 300px; background: red;"></div>
+  <h1>示例2</h1>
+  <Button @click="showDialog">show</Button>
 </template>
 
 <script lang="ts">
-import { ref } from 'vue';
+import { h, ref } from 'vue';
 import Button from '../lib/Button.vue'
 import Dialog from '../lib/Dialog.vue'
+import { openDialog } from '../lib/openDialog';
 export default {
   components: {
     Dialog,
@@ -35,7 +35,19 @@ export default {
     }
     const f2 = () =>{
     }
-    return {toggle, x,f1,f2}
+    const showDialog = () => {
+      openDialog({
+        title:()=> h('strong', {}, '标题'),
+        content:()=> '你好',
+        ok() {
+          console.log('ok')
+        },
+        cancel() {
+          console.log('cancel')
+        }
+      })
+    }
+    return {toggle, x,f1,f2,showDialog}
   }
 }
 </script>
